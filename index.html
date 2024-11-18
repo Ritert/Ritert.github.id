@@ -1,7 +1,322 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rıfat Bıyıklı - Siber Güvenlik</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Genel Ayarlar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            height: 100%;
+            background-color: #ffffff;
+        }
+
+        /* Gelişmiş Arka Plan */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #004225, #ffffff);
+            background-size: 300% 300%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        /* Header */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+            z-index: 10;
+            animation: fadeInHeader 2s ease-out;
+        }
+
+        header h1 {
+            font-size: 6rem;
+            color: #ffffff;
+            text-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            animation: slideIn 1.5s ease-out;
+            transform: translateY(50px);
+        }
+
+        header p {
+            font-size: 1.8rem;
+            color: #f1f1f1;
+            opacity: 0;
+            animation: fadeInText 2s ease-out;
+            animation-delay: 1.5s;
+            transform: translateY(80px); /* Daha fazla aşağı kaydırmak için bu değeri artırdık */
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateY(50px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes fadeInHeader {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeInText {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Navigasyon */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 66, 37, 0.8); /* British Racing Green */
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            transition: background 0.5s ease-in-out;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f1c40f; /* Altın Sarısı Hover */
+        }
+
+        /* İçerik Bölümleri */
+        .content-section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: 40px auto;
+            background: rgba(0, 66, 37, 0.8); /* British Racing Green */
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .content-section h2 {
+            font-size: 2.8rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 3px solid #f1c40f;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .content-section p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            text-align: justify;
+            margin-top: 20px;
+            color: #f1f1f1;
+        }
+
+        /* Instagram Butonu */
+        .instagram-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #E4405F;
+            color: white;
+            font-size: 1.5rem;
+            padding: 20px 30px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-decoration: none;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .instagram-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+            background-color: #c13584;
+        }
+
+        .instagram-btn i {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        .instagram-btn span {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #004225; /* British Racing Green */
+            text-align: center;
+            padding: 30px 10px;
+            color: #ffffff;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* İletişim Bölümü */
+        .contact-section {
+            max-width: 700px;
+            margin: 40px auto;
+            background: rgba(0, 66, 37, 0.9); /* British Racing Green */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-section h2 {
+            color: #ffffff;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 3px solid #f1c40f;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: #333;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1.1rem;
+            transition: background 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            background: #f1c40f;
+            outline: none;
+        }
+
+        .contact-form button {
+            background: #f1c40f;
+            color: white;
+            font-size: 1.2rem;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background: #e67e22;
+        }
+
+    </style>
+</head>
 <body>
-  <h1>RIFAT BIYIKLI</h1>
-  <p>GitHub Pages ile barındırılıyorum.</p>
+    <!-- Arka Plan -->
+    <div class="background"></div>
+
+    <!-- Başlık Bölümü -->
+    <header>
+        <h1>Rıfat Bıyıklı</h1>
+        <p>Siber Güvenlik Uzman Adayı</p>
+    </header>
+
+    <!-- Navigasyon -->
+    <nav>
+        <div class="logo">
+            <a href="#">Rıfat Bıyıklı</a>
+        </div>
+        <div>
+            <a href="#hedef">Hedef</a>
+            <a href="#egitim">Eğitim</a>
+            <a href="#deneyim">Deneyim</a>
+            <a href="#sertifikalar">Sertifikalar</a>
+            <a href="#iletisim">İletişim</a>
+        </div>
+    </nav>
+
+    <!-- İçerik Bölümleri -->
+    <section class="content-section" id="hedef">
+        <h2>Kariyer Hedefi</h2>
+        <p>Siber güvenlik alanında uzmanlaşarak, bilgi ve becerilerimi kullanıp organizasyonların dijital güvenlik açıklarını tespit etmek, güvenli çözümler geliştirmek ve siber tehditlere karşı etkili savunma mekanizmaları oluşturmak istiyorum.</p>
+    </section>
+
+    <section class="content-section" id="egitim">
+        <h2>Eğitim</h2>
+        <p>Siber Güvenlik bölümü öğrencisiyim ve bu alanda teorik bilgilerin yanı sıra pratik uygulama becerilerimi de geliştirmekteyim.</p>
+    </section>
+
+    <section class="content-section" id="deneyim">
+        <h2>Deneyim</h2>
+        <p>Henüz profesyonel iş deneyimim bulunmasa da siber güvenlik alanında çeşitli bireysel projeler üzerinde çalıştım ve bu projelerde edindiğim deneyimleri ilerideki profesyonel kariyerime taşımayı hedefliyorum.</p>
+    </section>
+
+    <section class="content-section" id="sertifikalar">
+        <h2>Sertifikalar ve Eğitimler</h2>
+        <ul>
+            <li>CompTIA Security+</li>
+            <li>Certified Ethical Hacker (CEH)</li>
+            <li>Siber Güvenlik Eğitimleri</li>
+        </ul>
+    </section>
+
+    <!-- İletişim Bölümü -->
+    <section class="contact-section" id="iletisim">
+        <h2>İletişim</h2>
+        <form action="mailto:rfatbykl@hotmail.com" method="post" enctype="text/plain" class="contact-form">
+            <input type="text" name="name" placeholder="Adınız" required>
+            <input type="email" name="email" placeholder="E-posta Adresiniz" required>
+            <textarea name="message" rows="6" placeholder="Mesajınız" required></textarea>
+            <button type="submit">Mesajı Gönder</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Rıfat Bıyıklı - <a href="https://instagram.com/rifatbiyiklii" target="_blank">Instagram</a></p>
+    </footer>
+
+    <!-- Instagram Sabit Butonu -->
+    <a href="https://instagram.com/rifatbiyiklii" target="_blank" class="instagram-btn">
+        <i class="fab fa-instagram"></i>
+        <span>Instagram</span>
+    </a>
 </body>
 </html>
